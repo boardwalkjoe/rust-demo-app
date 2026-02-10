@@ -1,0 +1,21 @@
+[package]
+name = "openshift-rustdemo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.8"
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+chrono = "0.4"
+sysinfo = "0.33"
+hostname = "0.4"
+libc = "0.2"
+
+[profile.release]
+opt-level = "z"     # Optimize for size
+lto = true           # Link-time optimization
+codegen-units = 1    # Single codegen unit for better optimization
+strip = true         # Strip debug symbols
+panic = "abort"      # Abort on panic (smaller binary)
